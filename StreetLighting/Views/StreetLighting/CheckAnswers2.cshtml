@@ -1,0 +1,67 @@
+﻿@model StreetLighting.Models.RespondentAnswers
+
+@{
+    ViewData["Title"] = "CheckAnswers2";
+}
+
+<h1>CheckAnswers2</h1>
+
+<h4>RespondentAnswers</h4>
+<hr />
+
+<table class="table">
+    <tr>
+        <th>
+            Personal details
+        </th>
+        <th></th>
+    </tr>
+
+    <tr>
+        <td >@Html.DisplayFor(item => item.Name) </td>
+        <td>
+            @Html.ActionLink("Change", "Change", new { type = "name" }) |
+        </td>
+    </tr>
+</table>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CheckAnswers">
+
+            <table class="table">
+                <tr>
+                    <th>
+                        Personal details
+                    </th>
+                    <th></th>
+                </tr>
+
+                <tr>
+                    <td>  <label asp-for="Name" class="control-label"></label></td>
+                    <td>  <input asp-for="Name" class="form-control" /></td>
+                    <td>
+                        @Html.ActionLink("Change", "Change", new { type = "name" })
+                    </td>
+                </tr>
+                <tr>
+                    <td> <label asp-for="EmailAddress" class="control-label"></label></td>
+                    <td>  <input asp-for="EmailAddress" class="form-control" /></td>
+                    <td>
+                        @Html.ActionLink("Change", "Change", new { type = "email" })
+                    </td>
+                </tr>
+            </table>
+
+            <div class="form-group">
+                <input type="submit" name="sendBtn" value="Accept and Send" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

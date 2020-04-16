@@ -1,0 +1,31 @@
+﻿@model StreetLighting.Models.RespondentName
+
+@{
+    ViewData["Title"] = "Name";
+}
+
+<h1>Name</h1>
+
+<h4>RespondentName</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Name">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="nextBtn" value="Next" class="btn btn-default" />
+                <input type="submit" name="prevBtn" value="Back" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

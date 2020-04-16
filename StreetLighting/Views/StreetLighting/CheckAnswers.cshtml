@@ -1,0 +1,46 @@
+﻿@model StreetLighting.Models.RespondentAnswers
+
+@{
+    ViewData["Title"] = "CheckAnswers";
+}
+
+<h1>CheckAnswers</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Personal Details
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td asp-for="FullName"></td>
+            <td>
+                @Html.ActionLink("Change", "Change", new { /* id=item.PrimaryKey */ }) |
+            </td>
+        </tr>
+        <tr>
+            <td asp-for="EmailAddress"></td>
+            <td>
+                @Html.ActionLink("Change", "Change", new { /* id=item.PrimaryKey */ }) |
+            </td>
+
+        </tr>
+
+    </tbody>
+</table>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Answers">
+            <div class="form-group">
+                <input type="submit" name="sendBtn" value="Send" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
