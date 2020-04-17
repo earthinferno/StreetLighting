@@ -2,9 +2,9 @@
 
 namespace StreetLighting.Models
 {
-    public class RespondentName
+    public class LightingResponse
     {
         [Required]
-        public string FullName { get; set; }
+        public bool? Satisfied { get; set; }
     }
 }

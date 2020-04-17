@@ -1,8 +1,13 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
+
 namespace StreetLighting.Models
 {
     public class RespondentEmailAddress
     {
-        public string EmailAddress { get; set; }
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email Address")]
+        public string Email { get; set; }
     }
 }
