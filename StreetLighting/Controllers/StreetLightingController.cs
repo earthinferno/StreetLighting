@@ -22,6 +22,8 @@ namespace StreetLighting.Controllers
             TempData.Remove("EmailAddress");
             TempData.Remove("Address");
             TempData.Remove("Satisfied");
+            TempData.Remove("Brightness");
+            TempData.Remove("Lighting");
             return View("Name");
         }
 
@@ -150,14 +152,7 @@ namespace StreetLighting.Controllers
             {
                 TempData["Satisfied"] = data.Satisfied == true ? "yes" : "no" ;
                 TempData.Keep();
-                return View("CheckAnswers2", 
-                    new RespondentAnswers
-                    {
-                        Name = TempData["FullName"] as string,
-                        EmailAddress = TempData["EmailAddress"] as string,
-                        Address = JsonConvert.DeserializeObject<RespondentAddress>(TempData["Address"] as string),
-                        Satisfied = data.Satisfied == true ? "yes" : "no"
-                    });
+                return Redirect("Brightness");
             }
 
             TempData.Keep();
@@ -165,6 +160,47 @@ namespace StreetLighting.Controllers
 
         }
 
+        public IActionResult Brightness()
+        {
+            var brightness = int.TryParse(TempData["Brightness"] as string, out var tempval) ? tempval : (int?)null;
+            if (brightness != null)
+            {
+                var respondentAddress = new BrightnessResponse
+                {
+                    Brightness = brightness.GetValueOrDefault()
+                };
+                TempData.Keep();
+                return View(respondentAddress);
+            }
+
+            TempData.Keep();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Brightness(BrightnessResponse data, string nextBtn)
+        {
+            if (nextBtn != null && ModelState.IsValid)
+            {
+                TempData["Brightness"] = data.Brightness.ToString();
+                TempData.Keep();
+
+                return View("CheckAnswers",
+                    new RespondentAnswers
+                    {
+                        Name = TempData["FullName"] as string,
+                        EmailAddress = TempData["EmailAddress"] as string,
+                        Address = JsonConvert.DeserializeObject<RespondentAddress>(TempData["Address"] as string),
+                        Satisfied = TempData["Satisfied"] as string,
+                        Brightness = data.Brightness.ToString()
+                    });
+            }
+
+            TempData.Keep();
+            return View();
+
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]

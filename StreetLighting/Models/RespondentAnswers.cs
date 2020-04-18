@@ -11,5 +11,7 @@ namespace StreetLighting.Models
         public RespondentAddress Address { get; set; }
 
         public string Satisfied { get; set; }
+
+        public string Brightness { get; set; }
     }
 }

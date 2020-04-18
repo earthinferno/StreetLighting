@@ -1,0 +1,77 @@
+﻿@model StreetLighting.Models.BrightnessResponse
+
+@{
+    ViewData["Title"] = "Brightness";
+}
+
+    <div class="govuk-width-container">
+        <a asp-controller="StreetLighting" asp-action="Lighting" class="govuk-back-link">Back</a>
+
+        <main class="govuk-main-wrapper " id="main-content" role="main">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <form asp-action="Brightness">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="govuk-form-group">
+                            <fieldset class="govuk-fieldset">
+                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                                    How bright is your street lighting?
+                                </legend>
+                                <span id="changed-name-hint" class="govuk-hint">
+                                    Please select from a scale of 1 to 10 (1 being very dark, 10 being very bright)?
+                                </span>
+                                <label asp-for="Brightness" class="govuk-label"></label>
+                                <select class="govuk-select" id="Brightness" name="Brightness">
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+
+                                <span asp-validation-for="Brightness" class="text-danger"></span>
+
+
+                            </fieldset>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="nextBtn" value="Next" class="govuk-button" />
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+
+@*<h1>Brightness</h1>
+
+<h4>BrightnessResponse</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Brightness">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Brightness" class="control-label"></label>
+                <input asp-for="Brightness" class="form-control" />
+                <span asp-validation-for="Brightness" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
