@@ -17,7 +17,7 @@
                                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                                     Are you satisfied with the level of lighting?
                                 </legend>
-
+                                <span asp-validation-for="Satisfied" class="govuk-error-message"></span>
                                 <div class="govuk-radios govuk-radios--inline">
                                     <div class="govuk-radios__item">
                                         <input class="govuk-radios__input" asp-for="Satisfied" type="radio" value="true">
@@ -34,7 +34,7 @@
 
                                     </div>
                                 </div>
-                                <span asp-validation-for="Satisfied" class="text-danger"></span>
+
                             </fieldset>
                         </div>
                         <div class="form-group">

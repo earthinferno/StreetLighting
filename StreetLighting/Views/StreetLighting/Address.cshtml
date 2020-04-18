@@ -18,34 +18,35 @@
                                 Where do you live?
                             </legend>
                             <div>
-                                <label asp-for="HouseNumber" class="govuk-label" ></label>
+                                <label asp-for="HouseNumber" class="govuk-label"></label>
+                                <span asp-validation-for="HouseNumber" class="govuk-error-message"></span>
                                 <input asp-for="HouseNumber" class="govuk-input" type="text" />
-                                <span asp-validation-for="HouseNumber" class="text-danger"></span>
                             </div>
 
                             <div>
-                                <label asp-for="HouseName" class="govuk-label" ></label>
+                                <label asp-for="HouseName" class="govuk-label"></label>
+                                <span asp-validation-for="HouseName" class="govuk-error-message"></span>
                                 <input asp-for="HouseName" class="govuk-input" type="text" />
-                                <span asp-validation-for="HouseName" class="text-danger"></span>
                             </div>
 
                             <div>
-                                <label asp-for="Street" class="govuk-label" ></label>
-                                <input asp-for="Street" class="govuk-input"  />
-                                <span asp-validation-for="Street" class="text-danger"></span>
+                                <label asp-for="Street" class="govuk-label"></label>
+                                <span asp-validation-for="Street" class="govuk-error-message"></span>
+                                <input asp-for="Street" class="govuk-input" />
                             </div>
 
 
                             <div>
-                                <label asp-for="City" class="govuk-label" ></label>
+                                <label asp-for="City" class="govuk-label"></label>
+                                <span asp-validation-for="City" class="govuk-error-message"></span>
                                 <input asp-for="City" class="govuk-input" type="text" />
-                                <span asp-validation-for="City" class="text-danger"></span>
+
                             </div>
 
                             <div>
-                                <label asp-for="PostCode" class="govuk-label" ></label>
+                                <label asp-for="PostCode" class="govuk-label"></label>
+                                <span asp-validation-for="PostCode" class="govuk-error-message"></span>
                                 <input asp-for="PostCode" class="govuk-input" type="text" />
-                                <span asp-validation-for="PostCode" class="text-danger"></span>
                             </div>
 
                         </fieldset>

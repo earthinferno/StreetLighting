@@ -18,11 +18,10 @@
                             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                                 What is your name?
                             </legend>
-                            <label asp-for="FullName" class="govuk-label" ></label>
+
+                            <label asp-for="FullName" class="govuk-label"></label>
+                            <span asp-validation-for="FullName" class="govuk-error-message"></span>
                             <input asp-for="FullName" class="govuk-input" type="text" />
-                            <span asp-validation-for="FullName" class="text-danger"></span>
-
-
 
                         </fieldset>
                     </div>

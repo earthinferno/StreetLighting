@@ -65,7 +65,7 @@ namespace StreetLighting.Controllers
             var emailAddress = TempData["EmailAddress"] as string;
             if (!string.IsNullOrWhiteSpace(emailAddress))
             {
-                var respondentName = new RespondentEmailAddress { EmailAddress = emailAddress };
+                var respondentName = new RespondentEmailAddress { Email = emailAddress };
                 TempData.Keep();
                 return View(respondentName);
             }
@@ -81,7 +81,7 @@ namespace StreetLighting.Controllers
         {
             if (nextBtn != null && ModelState.IsValid)
             {
-                TempData["EmailAddress"] = data.EmailAddress;
+                TempData["EmailAddress"] = data.Email;
                 return Redirect("Address");
             }
 

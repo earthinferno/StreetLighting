@@ -4,8 +4,6 @@
     ViewData["Title"] = "EmailAddress";
 }
 
-
-
 <div class="govuk-width-container">
     <a asp-controller="StreetLighting" asp-action="Name" class="govuk-back-link">Back</a>
 
@@ -19,12 +17,15 @@
                             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                                 What is your email address?
                             </legend>
-                            <label asp-for="EmailAddress" class="govuk-label" ></label>
-                            <input asp-for="EmailAddress" class="govuk-input" type="text"  />
-                            <span asp-validation-for="EmailAddress" class="text-danger"></span>
-
+                            <label asp-for="Email" class="govuk-label"></label>
+                            <span id="email-hint" class="govuk-hint">
+                                We’ll only use this to send you a receipt
+                            </span>
+                            <span asp-validation-for="Email" class="govuk-error-message"></span>
+                            <input asp-for="Email" class="govuk-input" />
                         </fieldset>
                     </div>
+                    
                     <div class="form-group">
                         <input type="submit" name="nextBtn" value="Next" class="govuk-button" data-module="govuk-button" />
                     </div>
