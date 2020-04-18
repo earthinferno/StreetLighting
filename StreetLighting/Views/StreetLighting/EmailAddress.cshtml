@@ -4,28 +4,60 @@
     ViewData["Title"] = "EmailAddress";
 }
 
-<h1>EmailAddress</h1>
+<div class="govuk-width-container">
+    <a asp-controller="StreetLighting" asp-action="Name" class="govuk-back-link">Back</a>
 
-<h4>RespondentEmailAddress</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="EmailAddress">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="EmailAddress" class="control-label"></label>
-                <input asp-for="EmailAddress" class="form-control" />
-                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+    <main class="govuk-main-wrapper " id="main-content" role="main">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <form asp-action="EmailAddress">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                                What is your email address?
+                            </legend>
+                            <label asp-for="Email" class="govuk-label"></label>
+                            <span id="email-hint" class="govuk-hint">
+                                We’ll only use this to send you a receipt
+                            </span>
+                            <span asp-validation-for="Email" class="govuk-error-message"></span>
+                            <input asp-for="Email" class="govuk-input" />
+                        </fieldset>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="submit" name="nextBtn" value="Next" class="govuk-button" data-module="govuk-button" />
+                    </div>
+
+                </form>
             </div>
-            <div class="form-group">
-                <input type="submit" name="nextBtn" value="Next" class="btn btn-default" />
-                <input type="submit" name="prevBtn" value="Back" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
+    </main>
+</div>
+
+@*<h1>EmailAddress</h1>
+
+    <h4>RespondentEmailAddress</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="EmailAddress">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="EmailAddress" class="control-label"></label>
+                    <input asp-for="EmailAddress" class="form-control" />
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="nextBtn" value="Next" class="btn btn-default" />
+                    <input type="submit" name="prevBtn" value="Back" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
 

@@ -2,9 +2,10 @@
 
 namespace StreetLighting.Models
 {
-    public class RespondentName
+    public class BrightnessResponse
     {
         [Required]
-        public string FullName { get; set; }
+        [Range(1,10)]
+        public int Brightness { get; set; }
     }
 }

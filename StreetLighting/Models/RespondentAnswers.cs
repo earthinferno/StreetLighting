@@ -1,4 +1,6 @@
-﻿namespace StreetLighting.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace StreetLighting.Models
 {
     public class RespondentAnswers
     {
@@ -6,6 +8,10 @@
 
         public string EmailAddress { get; set; }
 
-        //public Address Address { get; set; }
+        public RespondentAddress Address { get; set; }
+
+        public string Satisfied { get; set; }
+
+        public string Brightness { get; set; }
     }
 }
