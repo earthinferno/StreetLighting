@@ -1,13 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using StreetLighting.Models;
+using StreetLightingDomain;
+using StreetLightingDomain.Models;
+using System;
 
 namespace StreetLighting.Controllers
 {
     public class StreetLightingController : Controller
     {
-        public StreetLightingController()
+        private readonly IStreetLightingDataService _streetLightingDataService;
+
+        public StreetLightingController(IStreetLightingDataService streetLightingDataService)
         {
+            _streetLightingDataService = streetLightingDataService;
         }
         // Return the index view
         public IActionResult Index()
@@ -208,6 +214,34 @@ namespace StreetLighting.Controllers
         {
             if (sendBtn != null && ModelState.IsValid)
             {
+                var surveyDetails = new SurveyDetails
+                {
+                    Name = data.Name,
+                    EmailAddress = data.EmailAddress,
+                    Address = new SurveyAddress
+                    {
+                        HouseNumber = int.TryParse(data.Address.HouseNumber, out var number) ? number : (int?)null,
+                        HouseName = data.Address.HouseName,
+                        Street = data.Address.Street,
+                        City = data.Address.City,
+                        PostCode = data.Address.PostCode
+                    },
+                    // refactor - why is this as string
+                    Satisfied = data.Satisfied == "yes" ? true : false,
+                    // refactor - ensure this is done by UI validation before this point
+                    Brightness = int.TryParse(data.Brightness, out var brightness) ? brightness : 0
+                };
+
+                try
+                {
+                    _streetLightingDataService.SaveSurveyResponse(surveyDetails);
+                }
+                catch (Exception ex)
+                {
+                    // refactor - something better than this.
+                    return Redirect("Error");
+                }
+                
                 return View("Finish");
             }
 
