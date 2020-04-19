@@ -5,11 +5,9 @@ namespace StreetLightingDal.Data
 {
     public class StreetLightingDBContext : DbContext, IStreetLightingDBContext
     {
-
-
-        public DbSet<Address> Address { get; set; }
-        public DbSet<Respondent> Respondent { get; set; }
-        public DbSet<Response> QuestionnaireResponse { get; set; }
+        public virtual DbSet<Address> Address { get; set; }
+        public virtual DbSet<Respondent> Respondent { get; set; }
+        public virtual  DbSet<Response> QuestionnaireResponse { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
                    => options.UseSqlite("Data Source=streetLighting.db");
