@@ -7,6 +7,7 @@ using StreetLightingDomain;
 using StreetLightingDomain.Models;
 using System;
 using FluentAssertions;
+using AutoMapper;
 
 namespace StreetLightingXUnitTests
 {
@@ -18,6 +19,7 @@ namespace StreetLightingXUnitTests
 
             private readonly Mock<DbSet<Respondent>> _mockRespondentDBSet;
             private readonly Mock<StreetLightingDBContext> _mockStreetLightingDBContext;
+            private readonly Mock<IMapper> _mockMapper;
             private readonly IStreetLightingDataService _streetLightingDataService;
 
             public StreetLightingDataServicePositiveTests()
@@ -28,9 +30,8 @@ namespace StreetLightingXUnitTests
                     EmailAddress = "email@Address.Stub",
                     Address = new SurveyAddress
                     {
-                        HouseName = "nameStub",
-                        HouseNumber = null,
-                        Street = "streetStub",
+                        AddressLine1 = "addressLine1Stub",
+                        AddressLine2 = null,
                         City = "cityStub",
                         PostCode = "postCodeStub"
                     },
@@ -41,7 +42,9 @@ namespace StreetLightingXUnitTests
                 _mockRespondentDBSet = new Mock<DbSet<Respondent>>();
                 _mockStreetLightingDBContext = new Mock<StreetLightingDBContext>();
                 _mockStreetLightingDBContext.Setup(m => m.Respondent).Returns(_mockRespondentDBSet.Object);
-                _streetLightingDataService = new StreetLightingDataService(_mockStreetLightingDBContext.Object);
+                _mockMapper = new Mock<IMapper>();
+                _mockMapper.Setup(m => m.Map<Respondent>(_surveyDetails)).Returns(It.IsAny<Respondent>());
+                _streetLightingDataService = new StreetLightingDataService(_mockStreetLightingDBContext.Object, _mockMapper.Object);
             }
 
             [Fact]
@@ -61,6 +64,7 @@ namespace StreetLightingXUnitTests
             private readonly Mock<DbSet<Respondent>> _mockRespondentDBSet;
             private readonly Mock<StreetLightingDBContext> _mockStreetLightingDBContext;
             private readonly IStreetLightingDataService _streetLightingDataService;
+            private readonly Mock<IMapper> _mockMapper;
 
             public StreetLightingDataServiceNegativeTests()
             {
@@ -70,9 +74,8 @@ namespace StreetLightingXUnitTests
                     EmailAddress = "email@Address.Stub",
                     Address = new SurveyAddress
                     {
-                        HouseName = "nameStub",
-                        HouseNumber = null,
-                        Street = "streetStub",
+                        AddressLine1 = "addressLine1Stub",
+                        AddressLine2 = null,
                         City = "cityStub",
                         PostCode = "postCodeStub"
                     },
@@ -83,7 +86,9 @@ namespace StreetLightingXUnitTests
                 _mockRespondentDBSet = new Mock<DbSet<Respondent>>();
                 _mockStreetLightingDBContext = new Mock<StreetLightingDBContext>();
                 _mockStreetLightingDBContext.Setup(m => m.Respondent).Throws(new Exception("MockedException"));
-                _streetLightingDataService = new StreetLightingDataService(_mockStreetLightingDBContext.Object);
+                _mockMapper = new Mock<IMapper>();
+                _mockMapper.Setup(m => m.Map<Respondent>(_surveyDetails)).Returns(It.IsAny<Respondent>());
+                _streetLightingDataService = new StreetLightingDataService(_mockStreetLightingDBContext.Object, _mockMapper.Object);
             }
 
             [Fact]

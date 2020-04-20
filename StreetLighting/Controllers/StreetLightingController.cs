@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using StreetLighting.Models;
 using StreetLightingDomain;
@@ -10,10 +11,12 @@ namespace StreetLighting.Controllers
     public class StreetLightingController : Controller
     {
         private readonly IStreetLightingDataService _streetLightingDataService;
+        private readonly IMapper _mapper;
 
-        public StreetLightingController(IStreetLightingDataService streetLightingDataService)
+        public StreetLightingController(IStreetLightingDataService streetLightingDataService, IMapper mapper)
         {
             _streetLightingDataService = streetLightingDataService;
+            _mapper = mapper;
         }
         // Return the index view
         public IActionResult Index()
@@ -39,9 +42,8 @@ namespace StreetLighting.Controllers
             var fullName = TempData["FullName"] as string;
             if (!string.IsNullOrWhiteSpace(fullName))
             {
-                var respondentName = new RespondentName { FullName = fullName };
                 TempData.Keep();
-                return View(respondentName);
+                return View(new RespondentName { FullName = fullName });
             }
             TempData.Keep();
             return View();
@@ -50,8 +52,6 @@ namespace StreetLighting.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-        // Return the Name View
         public IActionResult Name(RespondentName data, string nextBtn)
         {
             if (nextBtn != null && ModelState.IsValid)
@@ -71,9 +71,8 @@ namespace StreetLighting.Controllers
             var emailAddress = TempData["EmailAddress"] as string;
             if (!string.IsNullOrWhiteSpace(emailAddress))
             {
-                var respondentName = new RespondentEmailAddress { Email = emailAddress };
                 TempData.Keep();
-                return View(respondentName);
+                return View(new RespondentEmailAddress { Email = emailAddress });
             }
 
             TempData.Keep();
@@ -101,16 +100,8 @@ namespace StreetLighting.Controllers
             var addressJson = TempData["Address"] as string;
             if (!string.IsNullOrWhiteSpace(addressJson))
             {
-                var address = JsonConvert.DeserializeObject<RespondentAddress>(addressJson);
-                var respondentAddress = new RespondentAddress { 
-                    HouseNumber = address.HouseNumber, 
-                    HouseName = address.HouseName, 
-                    Street = address.Street, 
-                    City = address.City, 
-                    PostCode = address.PostCode
-                };
                 TempData.Keep();
-                return View(respondentAddress);
+                return View(JsonConvert.DeserializeObject<RespondentAddress>(addressJson));
             }
 
             TempData.Keep();
@@ -199,7 +190,7 @@ namespace StreetLighting.Controllers
                         EmailAddress = TempData["EmailAddress"] as string,
                         Address = JsonConvert.DeserializeObject<RespondentAddress>(TempData["Address"] as string),
                         Satisfied = TempData["Satisfied"] as string,
-                        Brightness = data.Brightness.ToString()
+                        Brightness = data.Brightness
                     });
             }
 
@@ -214,24 +205,7 @@ namespace StreetLighting.Controllers
         {
             if (sendBtn != null && ModelState.IsValid)
             {
-                var surveyDetails = new SurveyDetails
-                {
-                    Name = data.Name,
-                    EmailAddress = data.EmailAddress,
-                    Address = new SurveyAddress
-                    {
-                        HouseNumber = int.TryParse(data.Address.HouseNumber, out var number) ? number : (int?)null,
-                        HouseName = data.Address.HouseName,
-                        Street = data.Address.Street,
-                        City = data.Address.City,
-                        PostCode = data.Address.PostCode
-                    },
-                    // refactor - why is this as string
-                    Satisfied = data.Satisfied == "yes" ? true : false,
-                    // refactor - ensure this is done by UI validation before this point
-                    Brightness = int.TryParse(data.Brightness, out var brightness) ? brightness : 0
-                };
-
+                var surveyDetails = _mapper.Map<SurveyDetails>(data);
                 try
                 {
                     _streetLightingDataService.SaveSurveyResponse(surveyDetails);
@@ -239,7 +213,7 @@ namespace StreetLighting.Controllers
                 catch (Exception ex)
                 {
                     // refactor - something better than this.
-                    return Redirect("Error");
+                    return Redirect("/Home/Error");
                 }
                 
                 return View("Finish");

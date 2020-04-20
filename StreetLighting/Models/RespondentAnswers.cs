@@ -12,6 +12,8 @@ namespace StreetLighting.Models
 
         public string Satisfied { get; set; }
 
-        public string Brightness { get; set; }
+        [Range(1, 10,
+        ErrorMessage = "Value for {0} must be between {1} and {2}.")]
+        public int Brightness { get; set; }
     }
 }

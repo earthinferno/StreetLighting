@@ -40,7 +40,7 @@
                                 Address
                             </dt>
                             <dd class="govuk-summary-list__value">
-                                @Model.Address.HouseNumber @Model.Address.HouseName @Model.Address.Street <br>@Model.Address.City<br>@Model.Address.PostCode
+                                @Model.Address.AddressLine1 @Model.Address.AddressLine2 <br>@Model.Address.City<br>@Model.Address.PostCode
                             </dd>
                             <dd class="govuk-summary-list__actions">
                                 <a asp-controller="StreetLighting" asp-action="Address" class="govuk-link">
@@ -90,9 +90,8 @@
 
                         <input type="hidden" asp-for="Name">
                         <input type="hidden" asp-for="EmailAddress">
-                        <input type="hidden" asp-for="Address.HouseNumber">
-                        <input type="hidden" asp-for="Address.HouseName">
-                        <input type="hidden" asp-for="Address.Street">
+                        <input type="hidden" asp-for="Address.AddressLine1">
+                        <input type="hidden" asp-for="Address.AddressLine2">
                         <input type="hidden" asp-for="Address.City">
                         <input type="hidden" asp-for="Address.PostCode">
                         <input type="hidden" asp-for="Satisfied">

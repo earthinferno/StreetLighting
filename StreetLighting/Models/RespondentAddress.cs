@@ -4,10 +4,9 @@ namespace StreetLighting.Models
 {
     public class RespondentAddress
     {
-        public string HouseNumber { get; set; }
-        public string HouseName { get; set; }
         [Required]
-        public string Street { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
         [Required]
         public string City { get; set; }
         [Required]
