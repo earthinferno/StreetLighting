@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreetLighting", "StreetLighting\StreetLighting.csproj", "{2A19E920-32AB-4DAB-B8CB-135DA4E77B13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreetLighting", "StreetLighting\StreetLighting.csproj", "{2A19E920-32AB-4DAB-B8CB-135DA4E77B13}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreetLightingDomain", "StreetLightingDomain\StreetLightingDomain.csproj", "{7D19EEFB-2266-4198-B284-5FB77805ADBD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreetLightingDal", "StreetLightingDal\StreetLightingDal.csproj", "{4D085BC3-5CEE-426D-A7A4-90F3B9CD5FB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreetLightingXUnitTests", "StreetLightingXUnitTests\StreetLightingXUnitTests.csproj", "{1D438E82-06D7-4393-999D-CE8CB0DE7688}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{2A19E920-32AB-4DAB-B8CB-135DA4E77B13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A19E920-32AB-4DAB-B8CB-135DA4E77B13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A19E920-32AB-4DAB-B8CB-135DA4E77B13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D19EEFB-2266-4198-B284-5FB77805ADBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D19EEFB-2266-4198-B284-5FB77805ADBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D19EEFB-2266-4198-B284-5FB77805ADBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D19EEFB-2266-4198-B284-5FB77805ADBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D085BC3-5CEE-426D-A7A4-90F3B9CD5FB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D085BC3-5CEE-426D-A7A4-90F3B9CD5FB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D085BC3-5CEE-426D-A7A4-90F3B9CD5FB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D085BC3-5CEE-426D-A7A4-90F3B9CD5FB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D438E82-06D7-4393-999D-CE8CB0DE7688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D438E82-06D7-4393-999D-CE8CB0DE7688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D438E82-06D7-4393-999D-CE8CB0DE7688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D438E82-06D7-4393-999D-CE8CB0DE7688}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

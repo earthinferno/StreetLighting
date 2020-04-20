@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using StreetLightingDomain;
 
 namespace StreetLighting
 {
@@ -24,6 +24,13 @@ namespace StreetLighting
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddTransient<IStreetLightingDataService, StreetLightingDataService>();
+            services.AddSQLiteDatabaseConnector();
+
+            //services.AddDbContext<StreetLightingDBContext>(options =>
+            //                options.UseSqlite("Data Source=StreetLightingSurvey.db", b => b.MigrationsAssembly("StreetLightningDAL")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace StreetLighting.Controllers.Entities
+namespace StreetLightingDomain.Models
 {
-    public class Address
+    public class SurveyAddress
     {
-        public int HouseNumber { get; set; }
+        public int? HouseNumber { get; set; }
         public string HouseName { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
