@@ -26,9 +26,8 @@ namespace StreetLightingDal.Data.Migrations
                 {
                     AddressId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    HouseNumber = table.Column<int>(nullable: true),
-                    HouseName = table.Column<string>(nullable: true),
-                    Street = table.Column<string>(nullable: true),
+                    AddressLine1 = table.Column<string>(nullable: true),
+                    AddressLine2 = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
                     PostCode = table.Column<string>(nullable: true),
                     RespondentId = table.Column<int>(nullable: false)

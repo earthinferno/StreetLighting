@@ -6,9 +6,8 @@ namespace StreetLightingDomain.Models
 {
     public class SurveyAddress
     {
-        public int? HouseNumber { get; set; }
-        public string HouseName { get; set; }
-        public string Street { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
         public string City { get; set; }
         public string PostCode { get; set; }
     }

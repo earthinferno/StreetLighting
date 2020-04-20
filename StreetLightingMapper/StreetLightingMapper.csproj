@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StreetLightingDal\StreetLightingDal.csproj" />
+    <ProjectReference Include="..\StreetLightingDomain\StreetLightingDomain.csproj" />
   </ItemGroup>
 
 </Project>

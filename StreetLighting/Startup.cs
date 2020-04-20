@@ -1,13 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StreetLightingDomain;
+using StreetLighting.Mappers;
+using StreetLightingDomain.Mappers;
 
 namespace StreetLighting
 {
@@ -27,10 +26,7 @@ namespace StreetLighting
 
             services.AddTransient<IStreetLightingDataService, StreetLightingDataService>();
             services.AddSQLiteDatabaseConnector();
-
-            //services.AddDbContext<StreetLightingDBContext>(options =>
-            //                options.UseSqlite("Data Source=StreetLightingSurvey.db", b => b.MigrationsAssembly("StreetLightningDAL")));
-
+            services.AddAutoMapper(typeof(DalMapper), typeof(StreetLightingDomainMapper));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

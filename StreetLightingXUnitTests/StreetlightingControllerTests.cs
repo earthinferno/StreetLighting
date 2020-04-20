@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using StreetLighting.Controllers;
 using StreetLighting.Models;
@@ -16,15 +17,17 @@ namespace StreetLightingXUnitTests
         Mock<IStreetLightingDataService> _mockStreetLightingDataService;
 
         StreetLightingController _streetLightingController;
+        private readonly Mock<IMapper> _mockMapper;
 
 
         public StreetlightingControllerTests()
         {
             _mockStreetLightingDataService = new Mock<IStreetLightingDataService>();
-
             _mockStreetLightingDataService.Setup(m => m.SaveSurveyResponse(It.IsAny<SurveyDetails>()));
 
-            _streetLightingController = new StreetLightingController(_mockStreetLightingDataService.Object);
+            _mockMapper = new Mock<IMapper>();
+
+            _streetLightingController = new StreetLightingController(_mockStreetLightingDataService.Object, _mockMapper.Object);
         }
 
         [Fact]
@@ -36,14 +39,13 @@ namespace StreetLightingXUnitTests
                 EmailAddress = "email@Address.Stub",
                 Address = new RespondentAddress
                 {
-                    HouseName = "nameStub",
-                    HouseNumber = null,
-                    Street = "streetStub",
+                    AddressLine1 = "nameStub",
+                    AddressLine2 = null,
                     City = "cityStub",
                     PostCode = "postCodeStub"
                 },
                 Satisfied = "yes",
-                Brightness = "1"
+                Brightness = 1
             };
 
             var result = _streetLightingController.CheckAnswers(answers, "stubVal") as ViewResult;
