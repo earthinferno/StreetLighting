@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using StreetLighting.Models;
+using StreetLightingDal;
+using StreetLightingDal.Models;
 using StreetLightingDomain;
-using StreetLightingDomain.Models;
 using System;
 
 namespace StreetLighting.Controllers
@@ -11,11 +12,17 @@ namespace StreetLighting.Controllers
     public class StreetLightingController : Controller
     {
         private readonly IStreetLightingDataService _streetLightingDataService;
+        private readonly IAddressLookUpService _addressLookUpService;
         private readonly IMapper _mapper;
 
-        public StreetLightingController(IStreetLightingDataService streetLightingDataService, IMapper mapper)
+        public StreetLightingController(
+            IStreetLightingDataService streetLightingDataService,
+            IAddressLookUpService addressLookUpService,
+            IMapper mapper
+        )
         {
             _streetLightingDataService = streetLightingDataService;
+            _addressLookUpService = addressLookUpService;
             _mapper = mapper;
         }
         // Return the index view
@@ -107,6 +114,14 @@ namespace StreetLighting.Controllers
             TempData.Keep();
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Address(string postCode, string nextBtn)
+        {
+            return View();
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

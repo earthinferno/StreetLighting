@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using StreetLightingDomain;
+using StreetLightingDal;
 using StreetLighting.Mappers;
-using StreetLightingDomain.Mappers;
+using StreetLightingDal.Mappers;
+using StreetLightingDomain;
+using StreetLightingExternalDependencies.Services;
 
 namespace StreetLighting
 {
@@ -23,10 +25,15 @@ namespace StreetLighting
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
             services.AddTransient<IStreetLightingDataService, StreetLightingDataService>();
-            services.AddSQLiteDatabaseConnector();
+            services.AddTransient<IAddressLookUpService, AddressLookUpService>();
+            services.AddServicesForDomain();
+
+            //services.AddServicesForDataAccessLayer();
+            services.AddHttpClient();
             services.AddAutoMapper(typeof(DalMapper), typeof(StreetLightingDomainMapper));
+
+            services.AddTransient<IAddressDataExternalService, PostcodesAddressData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

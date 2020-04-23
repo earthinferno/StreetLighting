@@ -1,6 +1,6 @@
-﻿using StreetLightingDomain.Models;
+﻿using StreetLightingDal.Models;
 
-namespace StreetLightingDomain
+namespace StreetLightingDal
 {
     public interface IStreetLightingDataService
     {

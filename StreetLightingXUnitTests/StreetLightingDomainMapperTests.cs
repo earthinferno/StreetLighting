@@ -2,7 +2,7 @@
 using FluentAssertions;
 using StreetLighting.Mappers;
 using StreetLighting.Models;
-using StreetLightingDomain.Models;
+using StreetLightingDal.Models;
 using Xunit;
 
 namespace StreetLightingXUnitTests

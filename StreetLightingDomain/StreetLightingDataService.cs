@@ -1,10 +1,10 @@
-﻿using StreetLightingDomain.Models;
+﻿using StreetLightingDal.Models;
 using StreetLightingDal.Data;
 using StreetLightingDal.Models;
 using System;
 using AutoMapper;
 
-namespace StreetLightingDomain
+namespace StreetLightingDal
 {
     public class StreetLightingDataService : IStreetLightingDataService
     {

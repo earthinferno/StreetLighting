@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using StreetLighting.Controllers;
 using StreetLighting.Models;
+using StreetLightingDal;
+using StreetLightingDal.Models;
 using StreetLightingDomain;
-using StreetLightingDomain.Models;
 using Xunit;
 
 namespace StreetLightingXUnitTests
@@ -14,6 +15,7 @@ namespace StreetLightingXUnitTests
         public class StreetlightingControllerPositiveTests
         {
             Mock<IStreetLightingDataService> _mockStreetLightingDataService;
+            Mock<IAddressLookUpService> _mockAddressLookUpService;
 
             StreetLightingController _streetLightingController;
             private readonly Mock<IMapper> _mockMapper;
@@ -24,9 +26,14 @@ namespace StreetLightingXUnitTests
                 _mockStreetLightingDataService = new Mock<IStreetLightingDataService>();
                 _mockStreetLightingDataService.Setup(m => m.SaveSurveyResponse(It.IsAny<SurveyDetails>()));
 
+                _mockAddressLookUpService = new Mock<IAddressLookUpService>();
+
                 _mockMapper = new Mock<IMapper>();
 
-                _streetLightingController = new StreetLightingController(_mockStreetLightingDataService.Object, _mockMapper.Object);
+                _streetLightingController = new StreetLightingController(
+                    _mockStreetLightingDataService.Object, 
+                    _mockAddressLookUpService.Object, 
+                    _mockMapper.Object);
             }
 
 

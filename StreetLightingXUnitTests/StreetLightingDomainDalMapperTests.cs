@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
 using StreetLightingDal.Models;
-using StreetLightingDomain.Models;
+using StreetLightingDal.Models;
 using Xunit;
 using FluentAssertions;
-using StreetLightingDomain.Mappers;
+using StreetLightingDal.Mappers;
 
 namespace StreetLightingXUnitTests
 {

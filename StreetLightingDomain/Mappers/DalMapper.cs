@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using StreetLightingDal.Models;
-using StreetLightingDomain.Models;
 
-namespace StreetLightingDomain.Mappers
+namespace StreetLightingDal.Mappers
 {
     public class DalMapper : Profile
     {
