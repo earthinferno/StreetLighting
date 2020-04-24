@@ -6,9 +6,7 @@ namespace StreetLighting.Models
 {
     public class PostcodeAddresses
     {
-        //public List<RespondentAddress> AddressList { get; set; }
         public List<SelectListItem> Addresses { get; set;  }
-
 
         [Required]
         public string SelectedAddress { get; set; }

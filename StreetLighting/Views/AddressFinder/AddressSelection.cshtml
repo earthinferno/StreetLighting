@@ -20,10 +20,11 @@
                             <div>
                                 <label class="govuk-label">Select an address</label>
                                 <span asp-validation-for="SelectedAddress" class="govuk-error-message"></span>
-                                <select asp-for="SelectedAddress"  asp-items="Model.Addresses" class="govuk-select" ></select>
+                                <select asp-for="SelectedAddress" asp-items="Model.Addresses" class="govuk-select"></select>
                             </div>
                         </fieldset>
                     </div>
+                    <a asp-controller="StreetLighting" asp-action="Address" class="govuk-skip-link">I can't find my address in the list</a>
                     <div class="form-group">
                         <input type="submit" name="nextBtn" value="Continue" class="govuk-button" data-module="govuk-button" />
                     </div>
