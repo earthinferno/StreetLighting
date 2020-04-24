@@ -1,4 +1,4 @@
-﻿using StreetLightingDal.Models;
+﻿using StreetLightingDomain.Models;
 
 namespace StreetLightingDal
 {

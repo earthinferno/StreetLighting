@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using StreetLighting.Models;
 using StreetLightingDal;
-using StreetLightingDal.Models;
 using StreetLightingDomain;
+using StreetLightingDomain.Models;
 using System;
+using System.Threading.Tasks;
 
 namespace StreetLighting.Controllers
 {
@@ -40,6 +41,7 @@ namespace StreetLighting.Controllers
             TempData.Remove("Satisfied");
             TempData.Remove("Brightness");
             TempData.Remove("Lighting");
+            TempData.Remove("Postcode");
             return View("Name");
         }
 
@@ -94,7 +96,8 @@ namespace StreetLighting.Controllers
             if (nextBtn != null && ModelState.IsValid)
             {
                 TempData["EmailAddress"] = data.Email;
-                return Redirect("Address");
+                //return Redirect("Address");
+                return Redirect("/AddressFinder");
             }
 
             TempData.Keep();
@@ -114,14 +117,6 @@ namespace StreetLighting.Controllers
             TempData.Keep();
             return View();
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Address(string postCode, string nextBtn)
-        {
-            return View();
-        }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]

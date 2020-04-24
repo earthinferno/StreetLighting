@@ -9,6 +9,8 @@ using StreetLighting.Mappers;
 using StreetLightingDal.Mappers;
 using StreetLightingDomain;
 using StreetLightingExternalDependencies.Services;
+using StreetLightingDomain.Mappers;
+using StreetLightingExternalDependencies.Mappers;
 
 namespace StreetLighting
 {
@@ -31,7 +33,11 @@ namespace StreetLighting
 
             //services.AddServicesForDataAccessLayer();
             services.AddHttpClient();
-            services.AddAutoMapper(typeof(DalMapper), typeof(StreetLightingDomainMapper));
+            services.AddAutoMapper(
+                typeof(DalMapper), 
+                typeof(StreetLightingMapper), 
+                typeof(AddressDataExternalServiceMapper), 
+                typeof(ExternalDependenciesMapper));
 
             services.AddTransient<IAddressDataExternalService, PostcodesAddressData>();
         }
@@ -58,6 +64,12 @@ namespace StreetLighting
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "AddressFinder",
+                    pattern: "AddressFinder",
+                    defaults: new { controller = "AddressFinder", action = "index" });
+
+
                 endpoints.MapControllerRoute(
                     name: "StreetLighting",
                     pattern: "lighting",

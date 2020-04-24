@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StreetLightingDal.Models
+namespace StreetLightingDomain.Models
 {
     public class SurveyAddress
     {

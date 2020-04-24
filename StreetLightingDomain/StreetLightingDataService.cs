@@ -1,8 +1,7 @@
 ﻿using StreetLightingDal.Models;
 using StreetLightingDal.Data;
-using StreetLightingDal.Models;
-using System;
 using AutoMapper;
+using StreetLightingDomain.Models;
 
 namespace StreetLightingDal
 {

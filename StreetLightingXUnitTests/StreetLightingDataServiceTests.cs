@@ -7,6 +7,7 @@ using StreetLightingDal;
 using System;
 using FluentAssertions;
 using AutoMapper;
+using StreetLightingDomain.Models;
 
 namespace StreetLightingXUnitTests
 {

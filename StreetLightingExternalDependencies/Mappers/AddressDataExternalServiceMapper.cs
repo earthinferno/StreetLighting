@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using StreetLightingExternalDependencies.Models;
-using System.Collections.Generic;
 
 namespace StreetLightingExternalDependencies.Mappers
 {

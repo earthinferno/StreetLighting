@@ -4,8 +4,8 @@ using Moq;
 using StreetLighting.Controllers;
 using StreetLighting.Models;
 using StreetLightingDal;
-using StreetLightingDal.Models;
 using StreetLightingDomain;
+using StreetLightingDomain.Models;
 using Xunit;
 
 namespace StreetLightingXUnitTests

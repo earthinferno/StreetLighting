@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using StreetLightingDal.Models;
+using StreetLightingDomain.Models;
 
 namespace StreetLightingDal.Mappers
 {
