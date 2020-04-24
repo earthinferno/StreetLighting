@@ -3,11 +3,11 @@ using StreetLightingDal.Data;
 using Xunit;
 using Moq;
 using StreetLightingDal.Models;
-using StreetLightingDomain;
-using StreetLightingDomain.Models;
+using StreetLightingDal;
 using System;
 using FluentAssertions;
 using AutoMapper;
+using StreetLightingDomain.Models;
 
 namespace StreetLightingXUnitTests
 {

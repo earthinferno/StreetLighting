@@ -4,9 +4,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using StreetLightingDomain;
+using StreetLightingDal;
 using StreetLighting.Mappers;
+using StreetLightingDal.Mappers;
+using StreetLightingDomain;
+using StreetLightingExternalDependencies.Services;
 using StreetLightingDomain.Mappers;
+using StreetLightingExternalDependencies.Mappers;
 
 namespace StreetLighting
 {
@@ -23,10 +27,19 @@ namespace StreetLighting
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
             services.AddTransient<IStreetLightingDataService, StreetLightingDataService>();
-            services.AddSQLiteDatabaseConnector();
-            services.AddAutoMapper(typeof(DalMapper), typeof(StreetLightingDomainMapper));
+            services.AddTransient<IAddressLookUpService, AddressLookUpService>();
+            services.AddServicesForDomain();
+
+            //services.AddServicesForDataAccessLayer();
+            services.AddHttpClient();
+            services.AddAutoMapper(
+                typeof(DalMapper), 
+                typeof(StreetLightingMapper), 
+                typeof(AddressDataExternalServiceMapper), 
+                typeof(ExternalDependenciesMapper));
+
+            services.AddTransient<IAddressDataExternalService, PostcodesAddressData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +64,12 @@ namespace StreetLighting
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "AddressFinder",
+                    pattern: "AddressFinder",
+                    defaults: new { controller = "AddressFinder", action = "index" });
+
+
                 endpoints.MapControllerRoute(
                     name: "StreetLighting",
                     pattern: "lighting",

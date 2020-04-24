@@ -3,6 +3,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Exclude appsettings.Development.json for now - until I implment a better solution for secrets
+appsettings.Development.json
 
 # SQLite Files
 *.db

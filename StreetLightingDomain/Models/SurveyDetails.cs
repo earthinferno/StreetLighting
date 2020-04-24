@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace StreetLightingDomain.Models
+﻿namespace StreetLightingDomain.Models
 {
     public class SurveyDetails
     {

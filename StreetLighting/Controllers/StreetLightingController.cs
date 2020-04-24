@@ -2,20 +2,28 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using StreetLighting.Models;
+using StreetLightingDal;
 using StreetLightingDomain;
 using StreetLightingDomain.Models;
 using System;
+using System.Threading.Tasks;
 
 namespace StreetLighting.Controllers
 {
     public class StreetLightingController : Controller
     {
         private readonly IStreetLightingDataService _streetLightingDataService;
+        private readonly IAddressLookUpService _addressLookUpService;
         private readonly IMapper _mapper;
 
-        public StreetLightingController(IStreetLightingDataService streetLightingDataService, IMapper mapper)
+        public StreetLightingController(
+            IStreetLightingDataService streetLightingDataService,
+            IAddressLookUpService addressLookUpService,
+            IMapper mapper
+        )
         {
             _streetLightingDataService = streetLightingDataService;
+            _addressLookUpService = addressLookUpService;
             _mapper = mapper;
         }
         // Return the index view
@@ -33,6 +41,7 @@ namespace StreetLighting.Controllers
             TempData.Remove("Satisfied");
             TempData.Remove("Brightness");
             TempData.Remove("Lighting");
+            TempData.Remove("Postcode");
             return View("Name");
         }
 
@@ -87,7 +96,8 @@ namespace StreetLighting.Controllers
             if (nextBtn != null && ModelState.IsValid)
             {
                 TempData["EmailAddress"] = data.Email;
-                return Redirect("Address");
+                //return Redirect("Address");
+                return Redirect("/AddressFinder");
             }
 
             TempData.Keep();

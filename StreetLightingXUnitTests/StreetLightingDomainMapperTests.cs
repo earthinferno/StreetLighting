@@ -14,7 +14,7 @@ namespace StreetLightingXUnitTests
 
         public StreetLightingDomainMapperTests()
         {
-            var config = new MapperConfiguration(mc => mc.AddProfile(new StreetLightingDomainMapper()));
+            var config = new MapperConfiguration(mc => mc.AddProfile(new StreetLightingMapper()));
             _mapper = config.CreateMapper();
 
             _respondentAnswers = new RespondentAnswers

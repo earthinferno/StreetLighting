@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using StreetLighting.Models;
 using StreetLightingDomain.Models;
 
 namespace StreetLighting.Mappers
 {
-    public class StreetLightingDomainMapper : Profile
+    public class StreetLightingMapper : Profile
     {
-        public StreetLightingDomainMapper()
+        public StreetLightingMapper()
         {
             CreateMap<SurveyDetails, RespondentAnswers>()
                 .ForMember(dest => dest.Satisfied,
@@ -18,6 +19,12 @@ namespace StreetLighting.Mappers
 
             CreateMap<SurveyAddress, RespondentAddress>()
                 .ReverseMap();
+
+            CreateMap<AddressSearchResult, PostcodeAddresses>();
+
+            CreateMap<SurveyAddress, SelectListItem>()
+                .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.AddressLine1))
+                .ForMember(dest => dest.Text, opt => opt.MapFrom(src => $"{src.AddressLine1} {src.AddressLine2} {src.City} {src.PostCode}"));
         }
     }
 }

@@ -1,0 +1,35 @@
+﻿@model StreetLighting.Models.RespondentPostcode
+
+@{
+    ViewData["Title"] = "AddressLookup";
+}
+
+<div class="govuk-width-container">
+    <a asp-controller="StreetLighting" asp-action="EmailAddress" class="govuk-back-link">Back</a>
+
+    <main class="govuk-main-wrapper " id="main-content" role="main">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <form asp-action="AddressLookup">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                                What is your home address?
+                            </legend>
+                            <div>
+                                <label asp-for="Postcode" class="govuk-label">Postcode</label>
+                                <span asp-validation-for="Postcode" class="govuk-error-message"></span>
+                                <input asp-for="Postcode" class="govuk-input" type="text" />
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="findAddress" value="Find Address" class="govuk-button" data-module="govuk-button" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
